@@ -6,17 +6,22 @@
 
 # Ignore bundler config.
 /.bundle
-
+.env
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
-
+/test
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
 
+.DS_Store
+doc/
+erd.pdf
+lib/tasks/auto_generate_diagram.rake
+public/uploads/
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep

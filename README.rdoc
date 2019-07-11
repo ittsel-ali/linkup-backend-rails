@@ -1,0 +1,61 @@
+= Link Up Backend (API only)
+
+This project contains the web server and WEB API. It's the monolith that control
+the application. The app provides following services:
+
+== API Features
+* Register User (User Account Setup)
+* Authenticate User (User Personalisation)
+* Post Create/Update/Delete/Show 
+
+
+== Dependencies
+This project requires:
+
+* Ruby 2.5.3
+* Rails 5.2.1
+* PostgreSQL 9.4.x
+* Unix Based OS (Linux or MacOS) *Windows is not supported.*
+* ImageMagick
+* Git client
+
+For deployment / database management:
+* Heroku CLI
+
+
+== Running
+
+To run the server execute the file devserver running the command:
+```
+rails server
+```
+
+== Installation Guide
+
+If it's your first time using rails, please read below on the "Further Reading" section.
+You will find tutorials and more detailed ways to start with Rails.
+
+After all the dependencies have been installed:
+
+1) Clone the repository:
+
+```
+git clone https://github.com/ittsel-ali/linkup-backend-rails
+cd linkup-backend-rails
+```
+
+2) Setup the environment.
+
+```
+bundle install
+```
+
+3) Depending on how you setup PostgreSQL you may have to enter the database credentials on the file:
+
+/config/database.yml
+First you gotta setup the database. So run this command inside the project folder:
+
+```
+rake db:create
+rake db:migrate
+```
