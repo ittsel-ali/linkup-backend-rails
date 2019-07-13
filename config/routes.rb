@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     controllers tokens: 'auths'  
   end
 
-  resource :posts
+  resources :posts
 end
