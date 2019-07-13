@@ -8,8 +8,6 @@ gem 'rails', '~> 5.2.1'
 # Use sqlite3 as the database for Active Record
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
-gem 'google_places'
-gem 'gistance'
 gem 'txtlocal', :git => 'git://github.com/epigenesys/txtlocal.git'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
@@ -45,6 +43,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
+  gem 'rack-cors'
 end
 
 group :development do
