@@ -43,28 +43,28 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
   version :mobile, :if => :image_to_post?  do
     process resize_to_fit: [1080, 540]
-    process :add_text
+    # process :add_text
   end
 
-  def add_text
-    manipulate! do |image|
-      post = Post.find(model.imagable_id)
+  # def add_text
+  #   manipulate! do |image|
+  #     post = Post.find(model.imagable_id)
 
-      image.combine_options do |c|
-        c.gravity 'South'
-        c.font 'Times-New-Roman'
-        c.pointsize '50'
-        c.draw "text 0,0 '#{post.text.titleize}'"
-        c.fill 'white'
+  #     image.combine_options do |c|
+  #       c.gravity 'South'
+  #       c.font 'Times-New-Roman'
+  #       c.pointsize '50'
+  #       c.draw "text 0,0 '#{post.text.titleize}'"
+  #       c.fill 'white'
 
-        c.gravity 'NorthEast'
-        c.pointsize '100'
-        c.draw "text 0,0 '$#{post.price}'"
-        c.fill 'white'
-      end
-      image
-    end
-  end
+  #       c.gravity 'NorthEast'
+  #       c.pointsize '100'
+  #       c.draw "text 0,0 '$#{post.price}'"
+  #       c.fill 'white'
+  #     end
+  #     image
+  #   end
+  # end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
