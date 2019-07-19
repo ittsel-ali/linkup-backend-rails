@@ -14,15 +14,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def should_process?
-    @should_process ||= false
-  end
-
-  def image_to_post?(uploaded_file)
-    return false unless should_process?
-
-    model.imagable_type.underscore.downcase.to_sym == :post
-  end
+  
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
@@ -41,30 +33,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :mobile, :if => :image_to_post?  do
-    process resize_to_fit: [1080, 540]
-    # process :add_text
-  end
-
-  # def add_text
-  #   manipulate! do |image|
-  #     post = Post.find(model.imagable_id)
-
-  #     image.combine_options do |c|
-  #       c.gravity 'South'
-  #       c.font 'Times-New-Roman'
-  #       c.pointsize '50'
-  #       c.draw "text 0,0 '#{post.text.titleize}'"
-  #       c.fill 'white'
-
-  #       c.gravity 'NorthEast'
-  #       c.pointsize '100'
-  #       c.draw "text 0,0 '$#{post.price}'"
-  #       c.fill 'white'
-  #     end
-  #     image
-  #   end
-  # end
+  process resize_to_fit: [420, 540]
+  
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
