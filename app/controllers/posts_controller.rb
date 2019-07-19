@@ -1,13 +1,11 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(id: :desc)
   end
   
   def create
-    post = Post.create(permit_params)
-
-    render json: post.image.file_url(:mobile)
+    @post = Post.create(permit_params)
   end
 
 

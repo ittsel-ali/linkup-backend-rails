@@ -1,8 +1,8 @@
-collection :@posts
+collection :@post
 attributes :text, :id
 
 node(:image) do |post|
-  post.image.present? ? post.image.file_url : ""
+  post.image.present? ? post.image.file.url : ""
 end
 
 node(:total_comments) do |post|
