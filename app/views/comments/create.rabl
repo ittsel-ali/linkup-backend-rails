@@ -1,0 +1,2 @@
+collection :@comment
+attribute :text
