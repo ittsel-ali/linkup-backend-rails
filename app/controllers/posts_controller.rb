@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = Post.create(permit_params)
+    @post = current_user.posts.create(permit_params)
   end
 
 
