@@ -1,10 +1,12 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  has_many :user_locations
-  has_many :visitors, through: :user_locations
-  has_many :registered_places, through: :visitors
+  has_many :friends
 
+  has_one :image, as: :imagable
+
+  accepts_nested_attributes_for :image
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -18,5 +20,13 @@ class User < ApplicationRecord
         user
       end
      end
+  end
+
+  def name
+    self.first_name.to_s+" "+self.last_name.to_s
+  end
+
+  def friend_list
+    User.where(id: self.friends.pluck(:friend_id))
   end
 end
