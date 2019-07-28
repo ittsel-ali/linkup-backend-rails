@@ -20,6 +20,8 @@ Bundler.require(*Rails.groups)
 Dotenv::Railtie.load if ENV['RAILS_ENV'] == 'development'
 
 require_relative 'env_to_const'
+require_relative '../lib/notifier'
+Notifier = Notifier.new
 
 module Helpme
   class Application < Rails::Application
