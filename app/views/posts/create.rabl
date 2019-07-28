@@ -1,5 +1,5 @@
 collection :@post
-attributes :text, :id
+attributes :text, :id, :author, :author_image
 
 node(:image) do |post|
   post.image.present? ? post.image.file.url : ""

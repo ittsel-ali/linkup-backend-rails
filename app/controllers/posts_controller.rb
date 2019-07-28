@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all.order(id: :desc)
+    @posts = Timeline.get_friends_posts(current_user).order(id: :desc)
   end
   
   def create

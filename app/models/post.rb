@@ -9,4 +9,12 @@ class Post < ApplicationRecord
   def author
     self.user.name
   end
+
+  def author_image
+    self.user.photo
+  end
+
+  def time
+    self.created_at.strftime("%B %d, %Y")
+  end
 end
