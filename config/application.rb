@@ -30,7 +30,7 @@ module Helpme
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3001'
+        origins ['localhost:3001', 'localhost:5000', 'https://linkup-frontend.herokuapp.com']
         resource '*', headers: :any, methods: [:get, :post, :options, :put]
       end
     end
