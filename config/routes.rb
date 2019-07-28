@@ -6,13 +6,21 @@ Rails.application.routes.draw do
     controllers tokens: 'auths'  
   end
   
-  resources :friends
-  
-  resources :users do 
-    collection do
-      get :show
+  resources :friends do
+    get :invite_friend
+    get :confirm_friend
+    get :friend_info
+    collection do 
+      get :requests
     end
+  end 
+  
+  resources :users do
     resources :timeline
+    collection do
+      get :me
+      put :update_user
+    end
   end
   
   resources :posts do
