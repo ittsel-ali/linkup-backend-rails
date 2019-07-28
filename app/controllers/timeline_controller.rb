@@ -2,7 +2,7 @@ class TimelineController < ApplicationController
   before_action :set_user
 
   def index
-    @posts = Timeline.get_friends_posts(@user)
+    @posts = Timeline.get_friends_posts(@user).order(id: :desc)
   end
 
   
