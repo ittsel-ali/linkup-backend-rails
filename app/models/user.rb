@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  has_many :friends
-  has_many :posts
-  has_many :tokens, class_name: "Doorkeeper::AccessToken", foreign_key: "resource_owner_id"
+  has_many :friends, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :tokens, class_name: "Doorkeeper::AccessToken", foreign_key: "resource_owner_id", dependent: :destroy
 
   has_one :image, as: :imagable, dependent: :destroy
 
