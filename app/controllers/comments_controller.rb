@@ -3,6 +3,10 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.create(permit_params)
+    
+    current_user.friend_list(true).each do |friend|
+      Notifier.trigger_comment(friend.tokens.last.token, @comment, @comment.post.id, "ShowPost")
+    end
   end
 
   private
@@ -12,6 +16,6 @@ class CommentsController < ApplicationController
   end
 
   def permit_params
-    params.require(:comment).permit(:text)
+    params.require(:comment).permit(:text).merge(user_id: current_user.id)
   end
 end

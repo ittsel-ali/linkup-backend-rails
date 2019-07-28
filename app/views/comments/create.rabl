@@ -1,2 +1,2 @@
 collection :@comment
-attribute :text
+attribute :text, :author, :author_image
