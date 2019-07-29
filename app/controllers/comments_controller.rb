@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.create(permit_params)
     
     current_user.friend_list(true).each do |friend|
-      Notifier.trigger_comment(friend.tokens.last.token, @comment, @comment.post.id, "ShowPost")
+      Notifier.delay.trigger_comment(friend.tokens.last.token, @comment, @comment.post.id, "ShowPost")
     end
   end
 
