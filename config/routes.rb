@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   
   resources :users do
     resources :timeline
+
     collection do
+      get '/search/:search', :to => 'users#search'
       get :me
       put :update_user
     end

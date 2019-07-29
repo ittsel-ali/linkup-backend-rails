@@ -8,6 +8,14 @@ class UsersController < ApplicationController
     return render json: body
   end
 
+  def search
+    @users = current_user.search(params[:search])
+
+    body = Rabl.render(@users, 'index', :view_path => 'app/views/users/', :format => :json)
+
+    return render json: body
+  end
+
   def me
     @user = current_user
 

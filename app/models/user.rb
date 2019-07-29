@@ -14,6 +14,21 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
+  def search(string)
+    users=[]
+
+    friends = self.friends.pluck(:friend_id) + [self.id]
+
+    if string == ":all"
+      users = User.where("id NOT IN (?) ", friends)
+    elsif string.present?
+      users = User.where(" id NOT IN (?) AND (LOWER(first_name) like ? OR LOWER(last_name) like ? )", friends, "%"+string+"%", "%"+string+"%")
+    else
+      users = User.where("id NOT IN (?) ", friends)
+    end
+
+    users.order(id: :desc)
+  end       
 
   class << self
     def authenticate(email, password)
