@@ -20,8 +20,6 @@ Bundler.require(*Rails.groups)
 Dotenv::Railtie.load if ENV['RAILS_ENV'] == 'development'
 
 require_relative 'env_to_const'
-require_relative '../lib/notifier'
-Notifier = Notifier.new
 
 module Helpme
   class Application < Rails::Application
@@ -30,7 +28,7 @@ module Helpme
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins ['localhost:3001', 'localhost:5000', 'https://linkup-frontend.herokuapp.com']
+        origins ['localhost:3000', 'localhost:5000', 'https://linkup-frontend.herokuapp.com']
         resource '*', headers: :any, methods: [:get, :post, :options, :put]
       end
     end
@@ -43,6 +41,7 @@ module Helpme
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+    config.active_job.queue_adapter = :delayed_job
     config.api_only = true
   end
 end
